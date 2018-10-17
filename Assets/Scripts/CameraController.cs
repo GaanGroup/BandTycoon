@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    private Transform tr;
-    private Transform cameraTr;
+    public GameObject player;
+
+    private Vector3 offset;
 
 	// Use this for initialization
 	void Start () {
-        tr = transform;
-        cameraTr = Camera.main.transform;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        // Gets the offset position between the camera and the player
+        offset = transform.position - player.transform.position;
+    }
+
+    private void LateUpdate()
+    {
+        transform.position = player.transform.position + offset;
+    }
 }
